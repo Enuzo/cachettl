@@ -66,13 +66,13 @@ defmodule Cachettl do
     # when ttl is not specified...
     Cachettl.store("HEL", %{})
     # internal conversion
-    #=> Storage.sec_to_ms(36_000)
-    #=> 36000
+    #=> Storage.sec_to_ms(3_600)
+    #=> 3_600_000
 
     ```
   """
 
-  def store(key, value, ttl \\ 36_000) when is_number(ttl) and ttl > 0 do
+  def store(key, value, ttl \\ 3_600) when is_number(ttl) and ttl > 0 do
     refresh = Storage.get_refresh_interval()
     ttl_sec = Storage.sec_to_ms(ttl)
 
