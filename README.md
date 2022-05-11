@@ -25,17 +25,50 @@
     therefore, data processing must start and be completed
     before it is needed, not when it is being requested for.
   - Data is not frequently accessed, but fast access is guaranteed when needed.
+  
+  ## Cachettl API
+  `Cachettl.get(key)`
+  Retrieve the value associated with the specified key.
 
+  If `key` exists in the cache and initial data associated with
+  `key` is available, `{:ok, data}` is returned. If data-prccessing
+  is in progress on first-run hence the data associated with `key`
+  has not been stored, then `{:busy, reason}` is returned.
+  If `key` is not present in the cache, `{:error, reason}` is returned.
+
+  Note: Client application calling `Cachettl.get(key)` should be
+  responsible for implementing a polling function with a timeout
+  mechanism. While this may be rarely needed, it should be
+  available in cases where the requested data does not yet exist
+  in the cache on initial run.
+  
+  Add or update existing `value` with its `ttl` in the cache under `key`.
+  `ttl` value is expected to be greater than the 
+  `refresh_interval` (see `Cachettl.Manager` configuration).
+  It is recommended that `ttl` value is divisible by the `refresh_interval`.
+  if `ttl` is not given, it defaults to `36_000` seconds(1 hour).
+
+  Note: `ttl` should be specified in seconds, either in `integer` or `decimal`.
+  The provided value will convert to milliseconds internally.
+  ```elixir
+    Cachettl.store("HEL", %{}, 10)
+    # internal conversion
+    #=> Storage.sec_to_ms(10) == 10_000
+    #=> true
+
+    Cachettl.store("HEL", %{}, 10.50)
+    # internal conversion
+    #=> Storage.sec_to_ms(10.50) == 10_500
+    #=> true
+
+    # when ttl is not specified...
+    Cachettl.store("HEL", %{})
+    # internal conversion
+    #=> Storage.sec_to_ms(36_000)
+    #=> 36000
+    ```
   ## Test-Run Utility
-   `Cachettl.MockWeather` provides utility functions that are available
-  for emulating the cache operation as part of the test coverage.
-
-  ## Example
-  `Cachettl.MockWeather` provides utility functions that are available
-  for emulating the cache operation as part of the test coverage.
-
-  ## Example
-  Launch two terminals. Lets call the first: Terminal-1, the second: Terminal-2.
+  Launch two terminals(Terminal-1 and Terminal-2).
   Run the following lines in the cachettl project directory:
 
   ```elixir
