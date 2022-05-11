@@ -74,8 +74,9 @@
     #=> 36000
   ```
   ## Test-Run Utility
-  Launch two terminals(Terminal-1 and Terminal-2).
-  Run the following lines in the cachettl project directory:
+  To test-run and observer the performance, launch two 
+  terminals(Terminal-1 and Terminal-2) and the following 
+  lines in the project root directory:
 
   ```elixir
   # Terminal-1
