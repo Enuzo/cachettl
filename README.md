@@ -1,3 +1,4 @@
+  # Cachettl
   `Cachettl` is an implementation of a periodic self-rehydrating TTL cache that resiliently
   handles expensive data-processing ahead of time for fast access.
 
@@ -7,6 +8,9 @@
   Child processes are assigned to compute the functions at set intervals
   and store the results. The cache is expected to provide the most recently
   computed value whenever `get/1` is called.
+  
+  ![ttl_cache drawio](https://user-images.githubusercontent.com/35094917/167915091-0b74a38b-5127-4e9d-a6c5-0bfda29453ed.png)
+
 
   ## Feature
   - Critical tasks are executed concurrently ensuring quality performance
