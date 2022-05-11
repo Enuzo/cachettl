@@ -18,6 +18,7 @@
     chain of supervisors on the main application-- ensuring application-wide
     stability and resilience to runtime exceptions.
   - Storage is optimized for concurrent read/write.
+  - Uses a single counter for Refresh Interval and TTL.
 
   ## Use Case
   - Input data is high-frequency fast-changing queries.
@@ -51,7 +52,7 @@
   `ttl` value is expected to be greater than the 
   `refresh_interval` (see `Cachettl.Manager` configuration).
   It is recommended that `ttl` value is divisible by the `refresh_interval`.
-  if `ttl` is not given, it defaults to `36_000` seconds(1 hour).
+  if `ttl` is not given, it defaults to `3_600` seconds(1 hour).
 
   Note: `ttl` should be specified in seconds, either in `integer` or `decimal`.
   The provided value will convert to milliseconds internally.
