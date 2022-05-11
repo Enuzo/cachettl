@@ -27,7 +27,9 @@
   - Data is not frequently accessed, but fast access is guaranteed when needed.
   
   ## Cachettl API
-  `Cachettl.get(key)`
+  ```elixir
+  Cachettl.get(key)
+  ```
   Retrieve the value associated with the specified key.
 
   If `key` exists in the cache and initial data associated with
@@ -42,7 +44,9 @@
   available in cases where the requested data does not yet exist
   in the cache on initial run.
   
-  ### Cachettl.store(key, vaue, ttl // 3_600)
+  ```elixir
+  Cachettl.store(key, vaue, ttl // 3_600)
+  ```
   Add or update existing `value` with its `ttl` in the cache under `key`.
   `ttl` value is expected to be greater than the 
   `refresh_interval` (see `Cachettl.Manager` configuration).
