@@ -11,7 +11,6 @@
   
   ![ttl_cache drawio](https://user-images.githubusercontent.com/35094917/167915091-0b74a38b-5127-4e9d-a6c5-0bfda29453ed.png)
 
-
   ## Feature
   - Critical tasks are executed concurrently ensuring quality performance
     without race conditions.
@@ -32,16 +31,20 @@
   for emulating the cache operation as part of the test coverage.
 
   ## Example
-  Open two terminals. Lets call them Terminal-1 and Terminal-2
-  Run the following lines in the cache project directory:
+  `Cachettl.MockWeather` provides utility functions that are available
+  for emulating the cache operation as part of the test coverage.
+
+  ## Example
+  Launch two terminals. Lets call the first: Terminal-1, the second: Terminal-2.
+  Run the following lines in the cachettl project directory:
 
   ```elixir
   # Terminal-1
-  /cache$ iex  --sname server@localhost -S mix
+  /cachettl$ iex  --sname server@localhost -S mix
   #=> Erlang/OTP...
 
   # Terminal-2
-  /cache$ iex --sname client@localhost -S mix
+  /cachettl$ iex --sname client@localhost -S mix
   #=> Erlang/OTP...
 
   # Treminal-2: connect to :server@localhost
