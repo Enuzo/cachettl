@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.28.4">
+    <meta name="project" content="cachettl v0.1.0">
+
+    <title>Cachettl.MockWeather — cachettl v0.1.0</title>
+    <link rel="stylesheet" href="dist/elixir-b6f1ed5df9b1d42a7309.css" />
+
+    <script src="dist/sidebar_items-f451b8ad07.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-bd1cb213813bf4825aa2.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+
+<section class="sidebar">
+  <button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar">
+    <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+  </button>
+
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <i class="ri-search-2-line" aria-hidden="true" title="Submit search"></i>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <i class="ri-close-line ri-lg" aria-hidden="true" title="Cancel search"></i>
+    </button>
+    <label class="search-label">
+      <p class="sr-only">Search</p>
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+
+    <div class="sidebar-projectDetails">
+      <a href="api-reference.html" class="sidebar-projectName" translate="no">
+cachettl
+      </a>
+      <strong class="sidebar-projectVersion" translate="no">
+        v0.1.0
+      </strong>
+    </div>
+    <ul class="sidebar-listNav">
+      <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+        <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+    </ul>
+  </div>
+
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>
+<button class="settings display-settings">
+  <i class="ri-settings-3-line"></i>
+  <span class="sr-only">Settings</span>
+</button>
+
+
+  <span translate="no">Cachettl.MockWeather</span> 
+  <small class="app-vsn" translate="no">(cachettl v0.1.0)</small>
+
+</h1>
+
+
+  <section id="moduledoc">
+<p><a href="Cachettl.MockWeather.html#content"><code class="inline">Cachettl.MockWeather</code></a> provides utility functions that are available
+for emulating the cache operation as part of the test coverage.</p><h2 id="module-example" class="section-heading">
+  <a href="#module-example" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">example</p>
+  </a>
+  Example
+</h2>
+<p>Open two terminals. Lets call them Terminal-1 and Terminal-2
+Run the following lines in the cache project directory:</p><pre><code class="makeup elixir" translate="no"><span class="c1"># Terminal-1</span><span class="w">
+</span><span class="o">/</span><span class="n">cache</span><span class="err">$</span><span class="w"> </span><span class="n">iex</span><span class="w">  </span><span class="o">--</span><span class="n">sname</span><span class="w"> </span><span class="n">server</span><span class="na">@localhost</span><span class="w"> </span><span class="o">-</span><span class="nc">S</span><span class="w"> </span><span class="n">mix</span><span class="w">
+</span><span class="c1">#=&gt; Erlang/OTP...</span><span class="w">
+
+</span><span class="c1"># Terminal-2</span><span class="w">
+</span><span class="o">/</span><span class="n">cache</span><span class="err">$</span><span class="w"> </span><span class="n">iex</span><span class="w"> </span><span class="o">--</span><span class="n">sname</span><span class="w"> </span><span class="n">client</span><span class="na">@localhost</span><span class="w"> </span><span class="o">-</span><span class="nc">S</span><span class="w"> </span><span class="n">mix</span><span class="w">
+</span><span class="c1">#=&gt; Erlang/OTP...</span><span class="w">
+
+</span><span class="c1"># Treminal-2: connect to :server@localhost</span><span class="w">
+</span><span class="n">iex</span><span class="p" data-group-id="6555799686-1">(</span><span class="n">client</span><span class="na">@localhost</span><span class="p" data-group-id="6555799686-1">)</span><span class="mi">1</span><span class="o">&gt;</span><span class="w"> </span><span class="nc">Node</span><span class="o">.</span><span class="n">connect</span><span class="p" data-group-id="6555799686-2">(</span><span class="ss">:server@localhost</span><span class="p" data-group-id="6555799686-2">)</span><span class="w">
+</span><span class="c1">#=&gt; true</span><span class="w">
+
+</span><span class="c1"># Terminal-1: verify connection</span><span class="w">
+</span><span class="n">iex</span><span class="p" data-group-id="6555799686-3">(</span><span class="n">server</span><span class="na">@localhost</span><span class="p" data-group-id="6555799686-3">)</span><span class="mi">1</span><span class="o">&gt;</span><span class="w"> </span><span class="nc">Node</span><span class="o">.</span><span class="n">list</span><span class="p" data-group-id="6555799686-4">(</span><span class="p" data-group-id="6555799686-4">)</span><span class="w">
+</span><span class="c1">#=&gt; [:client@localhost]</span><span class="w">
+
+</span><span class="c1"># Terminal-2: verify connection</span><span class="w">
+</span><span class="n">iex</span><span class="p" data-group-id="6555799686-5">(</span><span class="n">client</span><span class="na">@localhost</span><span class="p" data-group-id="6555799686-5">)</span><span class="mi">2</span><span class="o">&gt;</span><span class="w"> </span><span class="nc">Node</span><span class="o">.</span><span class="n">list</span><span class="p" data-group-id="6555799686-6">(</span><span class="p" data-group-id="6555799686-6">)</span><span class="w">
+</span><span class="c1">#=&gt; [:server@localhost]</span><span class="w">
+
+</span><span class="c1"># Terminal-1: use Observer to view performance and structures of running processes</span><span class="w">
+</span><span class="n">iex</span><span class="p" data-group-id="6555799686-7">(</span><span class="n">server</span><span class="na">@localhost</span><span class="p" data-group-id="6555799686-7">)</span><span class="mi">2</span><span class="o">&gt;</span><span class="w"> </span><span class="nc">:observer</span><span class="o">.</span><span class="n">start</span><span class="p" data-group-id="6555799686-8">(</span><span class="p" data-group-id="6555799686-8">)</span><span class="w">
+</span><span class="c1">#=&gt; ...</span><span class="w">
+</span><span class="c1">#=&gt; :ok</span><span class="w">
+
+</span><span class="c1"># Terminal-1</span><span class="w">
+</span><span class="n">iex</span><span class="p" data-group-id="6555799686-9">(</span><span class="n">server</span><span class="na">@localhost</span><span class="p" data-group-id="6555799686-9">)</span><span class="mi">3</span><span class="o">&gt;</span><span class="w"> </span><span class="nc">Cachettl.MockWeather</span><span class="o">.</span><span class="n">loop_store</span><span class="p" data-group-id="6555799686-10">(</span><span class="p" data-group-id="6555799686-10">)</span><span class="w">
+
+</span><span class="c1"># Terminal-2</span><span class="w">
+</span><span class="n">iex</span><span class="p" data-group-id="6555799686-11">(</span><span class="n">client</span><span class="na">@localhost</span><span class="p" data-group-id="6555799686-11">)</span><span class="mi">3</span><span class="o">&gt;</span><span class="w"> </span><span class="nc">Node</span><span class="o">.</span><span class="n">spawn</span><span class="p" data-group-id="6555799686-12">(</span><span class="ss">:server@localhost</span><span class="p">,</span><span class="w"> </span><span class="nc">Cachettl.MockWeather</span><span class="p">,</span><span class="w"> </span><span class="ss">:loop_get</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6555799686-13">[</span><span class="p" data-group-id="6555799686-13">]</span><span class="p" data-group-id="6555799686-12">)</span><span class="w">
+</span></code></pre><p>Expect to also get exceptions like this:</p><pre><code class="makeup elixir" translate="no"><span class="n">...</span><span class="p" data-group-id="6454081398-1">[</span><span class="n">warning</span><span class="p" data-group-id="6454081398-1">]</span><span class="w"> </span><span class="nc">Worker</span><span class="o">-</span><span class="nc">LUX</span><span class="w"> </span><span class="nc">Terminated</span><span class="o">.</span><span class="w"> </span><span class="ss">Reason</span><span class="p">:</span><span class="w"> </span><span class="err">{</span><span class="p" data-group-id="6454081398-2">%</span><span class="nc" data-group-id="6454081398-2">RuntimeError</span><span class="p" data-group-id="6454081398-2">{</span><span class="ss">message</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;faking an exception&quot;</span><span class="p" data-group-id="6454081398-2">}</span><span class="n">...</span><span class="w">
+
+</span><span class="n">...</span><span class="p" data-group-id="6454081398-3">[</span><span class="n">error</span><span class="p" data-group-id="6454081398-3">]</span><span class="w"> </span><span class="nc">GenServer</span><span class="w"> </span><span class="p" data-group-id="6454081398-4">{</span><span class="nc">Cachettl.WorkerRegistry</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;LUX-worker&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">:fun_0_arity_processor</span><span class="p" data-group-id="6454081398-4">}</span><span class="w"> </span><span class="n">terminating</span><span class="w">
+</span><span class="gt">** (RuntimeError) faking an exception</span><span class="w">
+</span></code></pre><p>It is a deliberate part of the test to verify how the <a href="https://hexdocs.pm/elixir/Supervisor.html"><code class="inline">Supervisor</code></a>
+handles child-process failure.</p>
+  </section>
+
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+      Summary
+    </h1>
+
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#generate_0_arity_fun/1" translate="no">generate_0_arity_fun(value)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>  <a href="#generate_0_arity_fun/1"><code class="inline">generate_0_arity_fun/1</code></a> generates a 0-arity function that embeds
+  <code class="inline">value</code> which is to be computed at a later time. The 0-arity mimics
+  an expensive data processing that takes a range of 2 - 4 seconds to complete.
+  Result is designed to return <code class="inline">{:ok, data}</code> or <code class="inline">{:error, reason}</code>,
+  or <a href="https://hexdocs.pm/elixir/Kernel.html#raise/1"><code class="inline">raise/1</code></a> as part of the test.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#loop_get/0" translate="no">loop_get()</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p><a href="#loop_get/0"><code class="inline">loop_get/0</code></a> calls <a href="Cachettl.html#get/1"><code class="inline">Cachettl.get/1</code></a> in a recursive loop
+that mimics infrequent data retrieval. It runs every 6 seconds and
+takes a random key as an argument on every call.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#loop_get_single/0" translate="no">loop_get_single()</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p><a href="#loop_get_single/0"><code class="inline">loop_get_single/0</code></a> same as <a href="#loop_get/0"><code class="inline">loop_get/0</code></a>
+but takes the same key as argument on every call.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#loop_store/0" translate="no">loop_store()</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p><a href="#loop_store/0"><code class="inline">loop_store/0</code></a> calls <a href="Cachettl.html#store/3"><code class="inline">Cachettl.store/3</code></a> in a recursive
+loop that mimics periodic fast data queries. It runs every second,
+takes random keys/value that represents mock-weather
+data by cities, and generated TTL in the range of 30 - 60 seconds
+as arguments on every call.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#single_loop_store/0" translate="no">single_loop_store()</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p><code class="inline">loop_store_single/0</code> same as <a href="#loop_store/0"><code class="inline">loop_store/0</code></a>
+but takes a single key/value as argument on every call.</p></div>
+
+      </div>
+
+  </div>
+
+  </section>
+
+
+  <section id="functions" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+Functions
+    </h1>
+    <div class="functions-list">
+<section class="detail" id="generate_0_arity_fun/1">
+
+  <div class="detail-header">
+    <a href="#generate_0_arity_fun/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">generate_0_arity_fun(value)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> generate_0_arity_fun(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">any</a>()) :: (() -&gt; {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>()} | {:ok, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">any</a>()})</pre>
+
+      </div>
+
+<p>  <a href="#generate_0_arity_fun/1"><code class="inline">generate_0_arity_fun/1</code></a> generates a 0-arity function that embeds
+  <code class="inline">value</code> which is to be computed at a later time. The 0-arity mimics
+  an expensive data processing that takes a range of 2 - 4 seconds to complete.
+  Result is designed to return <code class="inline">{:ok, data}</code> or <code class="inline">{:error, reason}</code>,
+  or <a href="https://hexdocs.pm/elixir/Kernel.html#raise/1"><code class="inline">raise/1</code></a> as part of the test.</p><p>  Note:
+  You are not expected to call this function directly.</p>
+  </section>
+</section>
+<section class="detail" id="loop_get/0">
+
+  <div class="detail-header">
+    <a href="#loop_get/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">loop_get()</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> loop_get() :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">no_return</a>()</pre>
+
+      </div>
+
+<p><a href="#loop_get/0"><code class="inline">loop_get/0</code></a> calls <a href="Cachettl.html#get/1"><code class="inline">Cachettl.get/1</code></a> in a recursive loop
+that mimics infrequent data retrieval. It runs every 6 seconds and
+takes a random key as an argument on every call.</p>
+  </section>
+</section>
+<section class="detail" id="loop_get_single/0">
+
+  <div class="detail-header">
+    <a href="#loop_get_single/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">loop_get_single()</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> loop_get_single() :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">no_return</a>()</pre>
+
+      </div>
+
+<p><a href="#loop_get_single/0"><code class="inline">loop_get_single/0</code></a> same as <a href="#loop_get/0"><code class="inline">loop_get/0</code></a>
+but takes the same key as argument on every call.</p>
+  </section>
+</section>
+<section class="detail" id="loop_store/0">
+
+  <div class="detail-header">
+    <a href="#loop_store/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">loop_store()</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> loop_store() :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">no_return</a>()</pre>
+
+      </div>
+
+<p><a href="#loop_store/0"><code class="inline">loop_store/0</code></a> calls <a href="Cachettl.html#store/3"><code class="inline">Cachettl.store/3</code></a> in a recursive
+loop that mimics periodic fast data queries. It runs every second,
+takes random keys/value that represents mock-weather
+data by cities, and generated TTL in the range of 30 - 60 seconds
+as arguments on every call.</p>
+  </section>
+</section>
+<section class="detail" id="single_loop_store/0">
+
+  <div class="detail-header">
+    <a href="#single_loop_store/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">single_loop_store()</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> single_loop_store() :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">no_return</a>()</pre>
+
+      </div>
+
+<p><code class="inline">loop_store_single/0</code> same as <a href="#loop_store/0"><code class="inline">loop_store/0</code></a>
+but takes a single key/value as argument on every call.</p>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+      <footer class="footer">
+
+        <p>
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.28.4) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>
