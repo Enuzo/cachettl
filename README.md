@@ -42,6 +42,7 @@
   available in cases where the requested data does not yet exist
   in the cache on initial run.
   
+  ###Cachettl.store(key, vaue, ttl // 3_600)
   Add or update existing `value` with its `ttl` in the cache under `key`.
   `ttl` value is expected to be greater than the 
   `refresh_interval` (see `Cachettl.Manager` configuration).
@@ -66,7 +67,7 @@
     # internal conversion
     #=> Storage.sec_to_ms(36_000)
     #=> 36000
-    ```
+  ```
   ## Test-Run Utility
   Launch two terminals(Terminal-1 and Terminal-2).
   Run the following lines in the cachettl project directory:
